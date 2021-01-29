@@ -1,0 +1,60 @@
+C:\PROJETOS - C#\EGP_PAINEL\bin\Debug\EGP_PAINEL.exe.config
+C:\PROJETOS - C#\EGP_PAINEL\bin\Debug\EGP_PAINEL.exe
+C:\PROJETOS - C#\EGP_PAINEL\bin\Debug\EGP_PAINEL.pdb
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.csprojAssemblyReference.cache
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Properties.Resources.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.csproj.GenerateResource.cache
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.csproj.CoreCompileInputs.cache
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.exe
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.pdb
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_camara.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_de_partido.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_funcoes.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_participante.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_projeto.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Formularios.Form_discusao.resources
+C:\PROJETOS - C#\EGP_PAINEL\obj\Debug\EGP_PAINEL.Form_principal.resources
+C:\Helberte\EGP-PAINEL\bin\Debug\EGP_PAINEL.exe.config
+C:\Helberte\EGP-PAINEL\bin\Debug\EGP_PAINEL.exe
+C:\Helberte\EGP-PAINEL\bin\Debug\EGP_PAINEL.pdb
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.csprojAssemblyReference.cache
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Form_principal.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_camara.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_de_partido.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_funcoes.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_participante.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_projeto.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.Form_discusao.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.Properties.Resources.resources
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.GenerateResource.cache
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.CoreCompileInputs.cache
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.exe
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.pdb
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\EGP_PAINEL.exe.config
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\EGP_PAINEL.exe
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\EGP_PAINEL.pdb
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.csprojAssemblyReference.cache
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Form_principal.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_camara.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_de_partido.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_funcoes.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_participante.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.form_cadastro_projeto.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Formularios.Form_discusao.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.Properties.Resources.resources
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.GenerateResource.cache
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.CoreCompileInputs.cache
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.exe
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.pdb
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\System.Resources.Extensions.dll
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\System.Memory.dll
+C:\PROJETOS - C#\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.CopyComplete
+C:\Helberte\EGP-PAINEL\bin\Debug\System.Resources.Extensions.dll
+C:\Helberte\EGP-PAINEL\bin\Debug\System.Memory.dll
+C:\Helberte\EGP-PAINEL\bin\Debug\System.Numerics.Vectors.dll
+C:\Helberte\EGP-PAINEL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\Helberte\EGP-PAINEL\bin\Debug\System.Buffers.dll
+C:\Helberte\EGP-PAINEL\obj\Debug\EGP_PAINEL.csproj.CopyComplete
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\System.Numerics.Vectors.dll
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
+C:\PROJETOS - C#\EGP-PAINEL\bin\Debug\System.Buffers.dll
