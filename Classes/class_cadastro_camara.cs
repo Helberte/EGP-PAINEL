@@ -63,7 +63,7 @@ namespace EGP_PAINEL.Classes
                            string email,
                            string telefone,
                            string celular, 
-                           string imagem,
+                           byte[] imagem,
                            string cep,
                            string rua,
                            string numero,

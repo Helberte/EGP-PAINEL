@@ -262,8 +262,7 @@ go
 
 -- ALTERA O TIPO DE DADO DA COLUNA IMAGEM NO BANco
 
-delete from CAMARA
-ALTER TABLE CAMARA alter column IMAGEM varchar(200)
+ALTER TABLE CAMARA alter column IMAGEM IMAGE
 
 
 

@@ -38,7 +38,7 @@ create procedure usp_camara
 	@email			varchar(150)		= null,
 	@telefone		char(11)			= null,
 	@celular		char(12)			= null,
-	@imagem			varchar(200)		= null,
+	@imagem			image				= null,
 	@cep			char(10)			= null,
 	@rua			varchar(200)		= null,
 	@numero			varchar(20)			= null,

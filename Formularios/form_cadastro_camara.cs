@@ -145,8 +145,7 @@ namespace EGP_PAINEL.Formularios
             ed_rua.Tag = "Rua";
             ed_email.Tag = "Email";
             ed_cidade.Tag = "Cidade";
-            ed_bairro.Tag = "Bairro";
-                        
+            ed_bairro.Tag = "Bairro";                        
 
             if (VerificaCampos())
             {
@@ -167,7 +166,7 @@ namespace EGP_PAINEL.Formularios
                                           ed_email.Text,
                                           telefone,
                                           "",
-                                          caminho_imagem,
+                                          ConverteFotoParaByteArray(),
                                           cep,
                                           ed_rua.Text,
                                           numero,
@@ -509,34 +508,34 @@ namespace EGP_PAINEL.Formularios
             tab_Camara.SelectedTab = tabPage_camaras;
         }
 
-        //private byte[] ConverteFotoParaByteArray()
-        //{
-        //    //http://www.andrealveslima.com.br/blog/index.php/2015/02/05/salvando-imagens-no-banco-de-dados-utilizando-c/
-        //    //using (var strean = new MemoryStream())
-        //    //{
-        //    //    pcb_imagem.Image.Save(strean, ImageFormat.Png);
-        //    //    strean.Seek(0, SeekOrigin.Begin);
-        //    //    byte[] bArray = new byte[strean.Length];
+        private byte[] ConverteFotoParaByteArray()
+        {
+            //http://www.andrealveslima.com.br/blog/index.php/2015/02/05/salvando-imagens-no-banco-de-dados-utilizando-c/
+            
+            using (var strean = new MemoryStream())
+            {
+                pcb_imagem.Image.Save(strean, ImageFormat.Png);
+                strean.Seek(0, SeekOrigin.Begin);
+                byte[] bArray = new byte[strean.Length];
 
-        //    //    strean.Read(bArray, 0, Convert.ToInt32(strean.Length));
+                strean.Read(bArray, 0, Convert.ToInt32(strean.Length));
 
-        //    //    return bArray;
-        //    //}
+                return bArray;
+            }
 
-        //    //if (pcb_imagem.Image != null)
-        //    //{
-        //    //    using (MemoryStream stream = new MemoryStream())
-        //    //    {
-        //    //        pcb_imagem.Image.Save(stream, ImageFormat.Jpeg);
+            //if (pcb_imagem.Image != null)
+            //{
+            //    using (MemoryStream stream = new MemoryStream())
+            //    {
+            //        pcb_imagem.Image.Save(stream, ImageFormat.Jpeg);
 
-        //    //        byte[] Bfoto = stream.ToArray();
+            //        byte[] Bfoto = stream.ToArray();
 
-        //    //        return Bfoto;
-        //    //    }
-        //    //}
-
-        //    return null;
-        //}
+            //        return Bfoto;
+            //    }
+            //}
+            //return null;
+        }
 
         //private void MostraImagem(int linha)
         //{
