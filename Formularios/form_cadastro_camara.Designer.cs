@@ -36,8 +36,8 @@
             this.bt_alterar = new System.Windows.Forms.Button();
             this.dataGrid_camaras = new System.Windows.Forms.DataGridView();
             this.tabPage_edicao = new System.Windows.Forms.TabPage();
+            this.bt_cancelar = new System.Windows.Forms.Button();
             this.bt_salvar = new System.Windows.Forms.Button();
-            this.bt_brasao = new System.Windows.Forms.Button();
             this.pcb_imagem = new System.Windows.Forms.PictureBox();
             this.groupBox_endereco = new System.Windows.Forms.GroupBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -58,7 +58,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.ed_nome = new System.Windows.Forms.TextBox();
-            this.bt_cancelar = new System.Windows.Forms.Button();
+            this.bt_excluir_foto = new System.Windows.Forms.Button();
             this.tab_Camara.SuspendLayout();
             this.tabPage_camaras.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGrid_camaras)).BeginInit();
@@ -76,6 +76,7 @@
             this.tab_Camara.SelectedIndex = 0;
             this.tab_Camara.Size = new System.Drawing.Size(787, 516);
             this.tab_Camara.TabIndex = 1;
+            this.tab_Camara.Selecting += new System.Windows.Forms.TabControlCancelEventHandler(this.tab_Camara_Selecting);
             // 
             // tabPage_camaras
             // 
@@ -104,7 +105,7 @@
             // 
             // bt_nova
             // 
-            this.bt_nova.Location = new System.Drawing.Point(170, 460);
+            this.bt_nova.Location = new System.Drawing.Point(89, 460);
             this.bt_nova.Name = "bt_nova";
             this.bt_nova.Size = new System.Drawing.Size(75, 23);
             this.bt_nova.TabIndex = 3;
@@ -114,12 +115,13 @@
             // 
             // bt_excluir
             // 
-            this.bt_excluir.Location = new System.Drawing.Point(89, 460);
+            this.bt_excluir.Location = new System.Drawing.Point(170, 460);
             this.bt_excluir.Name = "bt_excluir";
             this.bt_excluir.Size = new System.Drawing.Size(75, 23);
             this.bt_excluir.TabIndex = 2;
             this.bt_excluir.Text = "Excluir";
             this.bt_excluir.UseVisualStyleBackColor = true;
+            this.bt_excluir.Visible = false;
             // 
             // bt_alterar
             // 
@@ -129,6 +131,7 @@
             this.bt_alterar.TabIndex = 1;
             this.bt_alterar.Text = "Alterar";
             this.bt_alterar.UseVisualStyleBackColor = true;
+            this.bt_alterar.Click += new System.EventHandler(this.bt_alterar_Click);
             // 
             // dataGrid_camaras
             // 
@@ -141,9 +144,9 @@
             // 
             // tabPage_edicao
             // 
+            this.tabPage_edicao.Controls.Add(this.bt_excluir_foto);
             this.tabPage_edicao.Controls.Add(this.bt_cancelar);
             this.tabPage_edicao.Controls.Add(this.bt_salvar);
-            this.tabPage_edicao.Controls.Add(this.bt_brasao);
             this.tabPage_edicao.Controls.Add(this.pcb_imagem);
             this.tabPage_edicao.Controls.Add(this.groupBox_endereco);
             this.tabPage_edicao.Controls.Add(this.msk_cnpj);
@@ -158,6 +161,16 @@
             this.tabPage_edicao.Text = "Edição";
             this.tabPage_edicao.UseVisualStyleBackColor = true;
             // 
+            // bt_cancelar
+            // 
+            this.bt_cancelar.Location = new System.Drawing.Point(573, 385);
+            this.bt_cancelar.Name = "bt_cancelar";
+            this.bt_cancelar.Size = new System.Drawing.Size(89, 23);
+            this.bt_cancelar.TabIndex = 21;
+            this.bt_cancelar.Text = "Cancelar";
+            this.bt_cancelar.UseVisualStyleBackColor = true;
+            this.bt_cancelar.Click += new System.EventHandler(this.bt_cancelar_Click);
+            // 
             // bt_salvar
             // 
             this.bt_salvar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -169,17 +182,6 @@
             this.bt_salvar.UseVisualStyleBackColor = true;
             this.bt_salvar.Click += new System.EventHandler(this.bt_salvar_Click);
             // 
-            // bt_brasao
-            // 
-            this.bt_brasao.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bt_brasao.Location = new System.Drawing.Point(484, 385);
-            this.bt_brasao.Name = "bt_brasao";
-            this.bt_brasao.Size = new System.Drawing.Size(83, 23);
-            this.bt_brasao.TabIndex = 20;
-            this.bt_brasao.Text = "Brasão";
-            this.bt_brasao.UseVisualStyleBackColor = true;
-            this.bt_brasao.Click += new System.EventHandler(this.bt_brasao_Click);
-            // 
             // pcb_imagem
             // 
             this.pcb_imagem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -189,6 +191,7 @@
             this.pcb_imagem.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pcb_imagem.TabIndex = 17;
             this.pcb_imagem.TabStop = false;
+            this.pcb_imagem.DoubleClick += new System.EventHandler(this.pcb_imagem_DoubleClick);
             // 
             // groupBox_endereco
             // 
@@ -250,6 +253,7 @@
             this.ed_email.Name = "ed_email";
             this.ed_email.Size = new System.Drawing.Size(277, 22);
             this.ed_email.TabIndex = 5;
+            this.ed_email.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_nome_KeyPress);
             // 
             // label7
             // 
@@ -277,6 +281,7 @@
             this.ed_bairro.Name = "ed_bairro";
             this.ed_bairro.Size = new System.Drawing.Size(277, 22);
             this.ed_bairro.TabIndex = 4;
+            this.ed_bairro.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_nome_KeyPress);
             // 
             // label6
             // 
@@ -324,6 +329,7 @@
             this.ed_cidade.Name = "ed_cidade";
             this.ed_cidade.Size = new System.Drawing.Size(277, 22);
             this.ed_cidade.TabIndex = 3;
+            this.ed_cidade.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_nome_KeyPress);
             // 
             // label4
             // 
@@ -342,6 +348,7 @@
             this.ed_rua.Name = "ed_rua";
             this.ed_rua.Size = new System.Drawing.Size(405, 22);
             this.ed_rua.TabIndex = 2;
+            this.ed_rua.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_nome_KeyPress);
             // 
             // msk_cnpj
             // 
@@ -379,16 +386,17 @@
             this.ed_nome.Name = "ed_nome";
             this.ed_nome.Size = new System.Drawing.Size(446, 22);
             this.ed_nome.TabIndex = 0;
+            this.ed_nome.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_nome_KeyPress);
             // 
-            // bt_cancelar
+            // bt_excluir_foto
             // 
-            this.bt_cancelar.Location = new System.Drawing.Point(573, 385);
-            this.bt_cancelar.Name = "bt_cancelar";
-            this.bt_cancelar.Size = new System.Drawing.Size(89, 23);
-            this.bt_cancelar.TabIndex = 21;
-            this.bt_cancelar.Text = "Cancelar";
-            this.bt_cancelar.UseVisualStyleBackColor = true;
-            this.bt_cancelar.Click += new System.EventHandler(this.bt_cancelar_Click);
+            this.bt_excluir_foto.Location = new System.Drawing.Point(668, 290);
+            this.bt_excluir_foto.Name = "bt_excluir_foto";
+            this.bt_excluir_foto.Size = new System.Drawing.Size(100, 23);
+            this.bt_excluir_foto.TabIndex = 23;
+            this.bt_excluir_foto.Text = "Excluir foto";
+            this.bt_excluir_foto.UseVisualStyleBackColor = true;
+            this.bt_excluir_foto.Click += new System.EventHandler(this.bt_excluir_foto_Click);
             // 
             // form_cadastro_camara
             // 
@@ -433,7 +441,6 @@
         private System.Windows.Forms.DataGridView dataGrid_camaras;
         private System.Windows.Forms.TabPage tabPage_edicao;
         private System.Windows.Forms.Button bt_salvar;
-        private System.Windows.Forms.Button bt_brasao;
         private System.Windows.Forms.PictureBox pcb_imagem;
         private System.Windows.Forms.GroupBox groupBox_endereco;
         private System.Windows.Forms.Label label9;
@@ -455,5 +462,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox ed_nome;
         private System.Windows.Forms.Button bt_cancelar;
+        private System.Windows.Forms.Button bt_excluir_foto;
     }
 }

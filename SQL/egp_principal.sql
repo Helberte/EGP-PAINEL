@@ -262,7 +262,7 @@ go
 
 -- ALTERA O TIPO DE DADO DA COLUNA IMAGEM NO BANco
 
-ALTER TABLE CAMARA alter column IMAGEM IMAGE
+ALTER TABLE CAMARA alter column IMAGEM varbinary(max)
 
 
 

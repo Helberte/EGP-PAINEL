@@ -24,6 +24,10 @@ namespace EGP_PAINEL.Formularios
         bool primeira_inicializacao = false;
         string caminho_imagem = "";
 
+        bool sendo_alterado = false;
+       // bool alterou_imagem = false;
+        bool criando_um_novo = false;
+
         public form_cadastro_camara()
         {
             InitializeComponent();
@@ -53,27 +57,7 @@ namespace EGP_PAINEL.Formularios
             AjustaCorLinhasGrid();
             ed_consulta.Focus();
         }
-      
-        private void bt_brasao_Click(object sender, EventArgs e)
-        {
-            using (OpenFileDialog open = new OpenFileDialog())
-            {
-
-                pcb_imagem.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                open.InitialDirectory = "C:\\";
-
-                //estudar
-                open.Filter = "Tipos |*.png;*.jpg;*.bmp;*.jpeg";
-
-                if (open.ShowDialog() == DialogResult.OK)
-                {
-                    caminho_imagem = open.FileName;
-                    pcb_imagem.ImageLocation = open.FileName;
-                }
-            }
-        }        
-
+          
         private void AjustaCorLinhasGrid()
         {
             int cor = 0;
@@ -145,55 +129,117 @@ namespace EGP_PAINEL.Formularios
             ed_rua.Tag = "Rua";
             ed_email.Tag = "Email";
             ed_cidade.Tag = "Cidade";
-            ed_bairro.Tag = "Bairro";                        
+            ed_bairro.Tag = "Bairro";
 
-            if (VerificaCampos())
+
+            if (sendo_alterado)
             {
-                if (cnpj.Length < 14)
+                if (VerificaCampos())
                 {
-                    MessageBox.Show("O CNPJ precisa ter 14 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    msk_cnpj.Focus();
-                }
-                else if (cep.Length < 8)
-                {
-                    MessageBox.Show("O CEP precisa ter 8 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    msk_cep.Focus();
-                }
-                else
-                {
-                    if (cadastro_Camara.Insert(ed_nome.Text,
-                                          cnpj,
-                                          ed_email.Text,
-                                          telefone,
-                                          "",
-                                          ConverteFotoParaByteArray(),
-                                          cep,
-                                          ed_rua.Text,
-                                          numero,
-                                          ed_bairro.Text,
-                                          ed_cidade.Text)) // insere no banco, se der certo retorna true
+                    if (cnpj.Length < 14)
                     {
-
-                        MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                        tab_Camara.SelectedTab = tabPage_camaras;
-
-                        dataGrid_camaras.DataSource = cadastro_Camara.PreencheGrid("exec usp_camara 'c'").Tables[0];
-
-
-                        OrganizaColunasGrid();
-                        AjustaCorLinhasGrid();
-                        SelecionarLinhaNoGrid(cadastro_Camara.Serial_camara);
-                        DesativaTextos();
-                        PreencheCampos(index);
+                        MessageBox.Show("O CNPJ precisa ter 14 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msk_cnpj.Focus();
+                    }
+                    else if (cep.Length < 8)
+                    {
+                        MessageBox.Show("O CEP precisa ter 8 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msk_cep.Focus();
                     }
                     else
                     {
-                        ed_nome.Focus();
-                        MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Algo deu errado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (cadastro_Camara.Update(dataGrid_camaras.CurrentRow.Cells["Serial"].Value.ToString(),
+                                              ed_nome.Text,
+                                              cnpj,
+                                              ed_email.Text,
+                                              telefone,
+                                              "",
+                                              ConverteFotoParaByteArray(),
+                                              cep,
+                                              ed_rua.Text,
+                                              numero,
+                                              ed_bairro.Text,
+                                              ed_cidade.Text)) // insere no banco, se der certo retorna true
+                        {
+                            sendo_alterado = false;
+
+                            MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            tab_Camara.SelectedTab = tabPage_camaras;
+
+                            int linha_anterior = dataGrid_camaras.CurrentRow.Index;
+                            dataGrid_camaras.DataSource = cadastro_Camara.PreencheGrid("exec usp_camara 'c'").Tables[0];
+
+                            OrganizaColunasGrid();
+                            AjustaCorLinhasGrid();
+
+                            // seleciona a linha que estava sendo editada
+                            dataGrid_camaras.CurrentCell = dataGrid_camaras[2, linha_anterior];
+
+                            DesativaTextos();
+                            PreencheCampos(dataGrid_camaras.CurrentRow.Index);
+                        }
+                        else
+                        {
+                            ed_nome.Focus();
+                            MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Algo deu errado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
-                }                
-            }               
+                }
+            }
+            else if (criando_um_novo)               
+            {
+                if (VerificaCampos())
+                {
+                    if (cnpj.Length < 14)
+                    {
+                        MessageBox.Show("O CNPJ precisa ter 14 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msk_cnpj.Focus();
+                    }
+                    else if (cep.Length < 8)
+                    {
+                        MessageBox.Show("O CEP precisa ter 8 digitos.", "Antenção!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        msk_cep.Focus();
+                    }
+                    else
+                    {
+                        if (cadastro_Camara.Insert(ed_nome.Text,
+                                              cnpj,
+                                              ed_email.Text,
+                                              telefone,
+                                              "",
+                                              ConverteFotoParaByteArray(),
+                                              cep,
+                                              ed_rua.Text,
+                                              numero,
+                                              ed_bairro.Text,
+                                              ed_cidade.Text)) // insere no banco, se der certo retorna true
+                        {
+                            criando_um_novo = false;
+                            MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            tab_Camara.SelectedTab = tabPage_camaras;
+
+                            dataGrid_camaras.DataSource = cadastro_Camara.PreencheGrid("exec usp_camara 'c'").Tables[0];
+
+
+                            OrganizaColunasGrid();
+                            AjustaCorLinhasGrid();
+                            SelecionarLinhaNoGrid(cadastro_Camara.Serial_camara);
+                            DesativaTextos();
+                            PreencheCampos(index); // index é atribuido no metodo SelecionarLinhaNoGrid(conteudoDaLinha)
+                        }
+                        else
+                        {
+                            ed_nome.Focus();
+                            MessageBox.Show(cadastro_Camara.Mensagem_Retorno, "Algo deu errado", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+            }
+
+
+                          
         }
 
         private bool VerificaCampos()
@@ -318,8 +364,9 @@ namespace EGP_PAINEL.Formularios
             // quando o usuário organiza o grid por ordem, ele fica null por um instante
 
             if (dataGrid_camaras.CurrentRow != null)
-            {            
-                if (primeira_inicializacao == true)
+            {
+                // só irá preencher os campos depois que o form for totalmente inicializado
+                if (primeira_inicializacao == true) 
                 {
                     PreencheCampos(dataGrid_camaras.CurrentRow.Index);                                                                                      
                 }
@@ -338,23 +385,19 @@ namespace EGP_PAINEL.Formularios
             ed_email.Text = dataGrid_camaras.Rows[linha].Cells["Email"].Value.ToString();
             ed_rua.Text = dataGrid_camaras.Rows[linha].Cells["Rua"].Value.ToString();
 
-            string caminho_img = dataGrid_camaras.Rows[linha].Cells["Imagem"].Value.ToString();
-            if (string.IsNullOrEmpty(caminho_img)) // verifica se o campo imagem é vazio ou nullo   
+            if (string.IsNullOrEmpty(dataGrid_camaras.Rows[linha].Cells["Imagem"].Value.ToString()))
             {
                 pcb_imagem.Image = null;
             }
             else
             {
-                if (File.Exists(caminho_img)) // verifica se a imagem existe
-                {
-                    pcb_imagem.ImageLocation = caminho_img;
-                }
-                else
-                {
-                    MessageBox.Show("A imagem foi definida, porém não está na pasta de origem. \"" + caminho_img +
-                        "\"", "Lhe falta a imagem", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-            }
+                byte[] imagem = new byte[0];
+                imagem = (byte[])dataGrid_camaras.Rows[linha].Cells["Imagem"].Value;
+
+                MemoryStream memory = new MemoryStream(imagem);
+                pcb_imagem.Image = Image.FromStream(memory);
+            }           
+
         }
 
         private void form_cadastro_camara_Shown_1(object sender, EventArgs e)
@@ -376,6 +419,7 @@ namespace EGP_PAINEL.Formularios
 
         private void bt_nova_Click(object sender, EventArgs e)
         {
+            criando_um_novo = true;
             tab_Camara.SelectedTab = tabPage_edicao;
             AtivaTextos();
             LimpaCampos();
@@ -486,6 +530,10 @@ namespace EGP_PAINEL.Formularios
             msk_cnpj.Enabled = false;
             msk_numero.Enabled = false;
             msk_telefone.Enabled = false;
+
+            bt_salvar.Visible = false;
+            bt_excluir_foto.Visible = false;
+            bt_cancelar.Visible = false;
         }
 
         private void AtivaTextos()
@@ -499,42 +547,166 @@ namespace EGP_PAINEL.Formularios
             msk_cnpj.Enabled = true;
             msk_numero.Enabled = true;
             msk_telefone.Enabled = true;
+
+            bt_salvar.Visible = true;
+            bt_excluir_foto.Visible = true;
+            bt_cancelar.Visible = true;
         }
 
         private void bt_cancelar_Click(object sender, EventArgs e)
         {
             LimpaCampos();
             DesativaTextos();
+            if (dataGrid_camaras.CurrentRow is null)
+            {
+                if (dataGrid_camaras.Rows.Count > 0)
+                {
+                    dataGrid_camaras.CurrentCell = dataGrid_camaras[2, 0];
+                    PreencheCampos(dataGrid_camaras.CurrentRow.Index);
+                }
+            }
+            else
+            {
+                PreencheCampos(dataGrid_camaras.CurrentRow.Index);
+            }
+            
+            //alterou_imagem = false;
+            sendo_alterado = false;
+            criando_um_novo = false;
             tab_Camara.SelectedTab = tabPage_camaras;
         }
 
         private byte[] ConverteFotoParaByteArray()
         {
-            //http://www.andrealveslima.com.br/blog/index.php/2015/02/05/salvando-imagens-no-banco-de-dados-utilizando-c/
-            
-            using (var strean = new MemoryStream())
+            // fonte
+            // https://docs.microsoft.com/pt-br/troubleshoot/dotnet/csharp/copy-image-database-picturebox
+
+
+            if (pcb_imagem.Image is null)            
+                return null;            
+            else
             {
-                pcb_imagem.Image.Save(strean, ImageFormat.Png);
-                strean.Seek(0, SeekOrigin.Begin);
-                byte[] bArray = new byte[strean.Length];
+                if (string.IsNullOrEmpty(caminho_imagem)) // verifica o caminho da imagem
+                {
+                    return (byte[])dataGrid_camaras.CurrentRow.Cells["Imagem"].Value; // retorna a mesma que está no banco
+                }
+                else
+                {
+                    using (FileStream arquivo = new FileStream(caminho_imagem, FileMode.Open, FileAccess.Read))
+                    {
+                        byte[] matriz = new byte[arquivo.Length];
 
-                strean.Read(bArray, 0, Convert.ToInt32(strean.Length));
+                        arquivo.Read(matriz, 0, matriz.Length);
 
-                return bArray;
+                        caminho_imagem = "";
+                        return matriz;
+                    }
+                }
             }
 
-            //if (pcb_imagem.Image != null)
+            //if (alterou_imagem)
             //{
-            //    using (MemoryStream stream = new MemoryStream())
+            //    alterou_imagem = false;
+
+            //    // verifica se a pessoa escolheu alguma imagem
+            //    if (string.IsNullOrEmpty(caminho_imagem))
             //    {
-            //        pcb_imagem.Image.Save(stream, ImageFormat.Jpeg);
+            //        // se o caminho estiver nulo, antes de retornar nulo é preciso saber se já existia alguma imagem salva no banco
 
-            //        byte[] Bfoto = stream.ToArray();
-
-            //        return Bfoto;
+            //        if (string.IsNullOrEmpty(dataGrid_camaras.CurrentRow.Cells["Imagem"].Value.ToString()))                    
+            //            return null;                    
+            //        else                    
+            //            return (byte[])dataGrid_camaras.CurrentRow.Cells["Imagem"].Value;                                                        
             //    }
+            //    else
+            //    {
+            //        using (FileStream arquivo = new FileStream(caminho_imagem, FileMode.Open, FileAccess.Read))
+            //        {
+            //            byte[] matriz = new byte[arquivo.Length];
+
+            //            arquivo.Read(matriz, 0, matriz.Length);
+
+            //            return matriz;
+            //        }
+            //    }                
             //}
-            //return null;
+            //else // se a pessoa não alterou a imagem, verifica se já existia imagem antes, se sim, salva ela mesma, se não, salva null
+            //{
+            //    if (string.IsNullOrEmpty(dataGrid_camaras.CurrentRow.Cells["Imagem"].Value.ToString()))
+            //    {
+            //        return null;
+            //    }
+            //    else
+            //    {
+            //        return (byte[]) dataGrid_camaras.CurrentRow.Cells["Imagem"].Value;
+            //    }               
+            //}                     
+        }
+
+        private void bt_alterar_Click(object sender, EventArgs e)
+        {
+            if (dataGrid_camaras.CurrentRow is null)
+            {
+                MessageBox.Show("selecione um cadastro a ser alterado.","Ops!",
+                    MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                sendo_alterado = true;
+                tab_Camara.SelectedTab = tabPage_edicao;
+                AtivaTextos();
+                ed_nome.Focus();
+            }          
+
+        }
+
+        private void pcb_imagem_DoubleClick(object sender, EventArgs e)
+        {
+            if (sendo_alterado || criando_um_novo)
+            {
+                using (OpenFileDialog open = new OpenFileDialog())
+                {
+                    pcb_imagem.SizeMode = PictureBoxSizeMode.Zoom;
+
+                    open.InitialDirectory = "C:\\";
+
+                    //estudar
+                    open.Filter = "Tipos |*.png;*.jpg;*.bmp;*.jpeg";
+
+                    if (open.ShowDialog() == DialogResult.OK)
+                    {
+                        caminho_imagem = open.FileName;
+                        pcb_imagem.ImageLocation = open.FileName;
+                        //alterou_imagem = true;
+                    }
+                }
+            }
+            
+        }
+
+        private void bt_excluir_foto_Click(object sender, EventArgs e)
+        {
+            if (!(pcb_imagem.Image is null))
+            {
+                //alterou_imagem = true;
+                pcb_imagem.Image = null;
+            }
+        }
+
+        private void ed_nome_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == Convert.ToChar("'"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void tab_Camara_Selecting(object sender, TabControlCancelEventArgs e)
+        {
+            if (e.TabPage == tabPage_camaras && sendo_alterado)
+                e.Cancel = true;
+            else if (e.TabPage == tabPage_camaras && criando_um_novo)
+                e.Cancel = true;                        
         }
 
         //private void MostraImagem(int linha)

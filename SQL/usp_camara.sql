@@ -38,7 +38,7 @@ create procedure usp_camara
 	@email			varchar(150)		= null,
 	@telefone		char(11)			= null,
 	@celular		char(12)			= null,
-	@imagem			image				= null,
+	@imagem			varbinary(max)		= null,
 	@cep			char(10)			= null,
 	@rua			varchar(200)		= null,
 	@numero			varchar(20)			= null,
@@ -99,6 +99,12 @@ begin
 		else if (UPPER(@acao) = 'A')  -- ALTERAR - UPDATE
 		begin
 			
+			declare @id_endereco_na_camara int
+
+			-- obtem o numero do endereço na camara
+			select @id_endereco_na_camara=c.FK_ENDERECO from CAMARA c where c.SERIAL_CAMARA = @serial_camara
+
+			-- atualiza a camara atual
 			update CAMARA set NOME = @nome,
 							  CNPJ = @cnpj,
 							  EMAIL = @email,
@@ -106,9 +112,17 @@ begin
 							  CELULAR = @celular,
 							  IMAGEM = @imagem
 				   where CAMARA.SERIAL_CAMARA = @serial_camara
+			
+			-- atualiza o endereço da camara com base no valor obtido
+			update endereco set cep = @cep,
+								rua = @rua,
+								numero = @numero,
+								bairro = @bairro,
+								cidade = @cidade
+				   where ID_ENDERECO = @id_endereco_na_camara
+
 
 			select 1 [result]
-
 		end
 		else if (UPPER(@acao) = 'E') -- EXCLUIR
 		begin
