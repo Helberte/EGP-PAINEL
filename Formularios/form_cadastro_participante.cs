@@ -25,88 +25,36 @@ namespace EGP_PAINEL.Formularios
             frm_cad_participante = this;
         }
 
+        private void form_cadastro_participante_Load(object sender, EventArgs e)
+        {
+            
+        }
+
         private void form_cadastro_participante_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (e.KeyChar == (char)Keys.Escape)
             {
                 frm_cad_participante.Close();
             }            
-        }
-
-        private void textBox4_KeyPress(object sender, KeyPressEventArgs e)
-        {
-           //if (char.IsLetter(e.KeyChar))
-           // {
-           //     e.Handled = true;
-           // }
-        }
-
-        private void textBox4_Validating(object sender, CancelEventArgs e)
-        {
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
+        }              
 
         private void textBox1_Validating(object sender, CancelEventArgs e)
         {
-            if (txtNome.Text.Trim() != "")
+            if (ed_Nome.Text.Trim() != "")
             {
-                txtLogin.Text = txtNome.Text.Substring(0, (txtNome.Text.IndexOf(" ") == -1) ? 0 : txtNome.Text.IndexOf(" "));                       
+                ed_Login.Text = ed_Nome.Text.Substring(0, (ed_Nome.Text.IndexOf(" ") == -1) ? 0 : ed_Nome.Text.IndexOf(" "));                       
             }            
         }
 
         private void btFoto_Click(object sender, EventArgs e)
         {
-            using (OpenFileDialog open = new OpenFileDialog())
-            {
 
-                pictureBox_foto.SizeMode = PictureBoxSizeMode.StretchImage;
-
-                open.InitialDirectory = "C:\\";
-
-                //estudar
-                open.Filter = "Tipos |*.png;*.jpg;*.bmp;*.jpeg";
-
-                if (open.ShowDialog() == DialogResult.OK)
-                {
-                    pictureBox_foto.ImageLocation = open.FileName;
-                }
-            }                    
         }
 
-      
+
         private void pictureBox_foto_MouseEnter(object sender, EventArgs e)
         {
-            mouse_na_foto = true;
-          
-        }
-
-        private void pictureBox_foto_MouseDown(object sender, MouseEventArgs e)
-        {
-            
+            mouse_na_foto = true;          
         }
 
         private void pictureBox_foto_MouseLeave(object sender, EventArgs e)
@@ -123,21 +71,6 @@ namespace EGP_PAINEL.Formularios
                     pictureBox_foto.Image = null;
                 }
             }
-        }
-
-        private void form_cadastro_participante_Deactivate(object sender, EventArgs e)
-        {
-            
-        }
-
-        private void form_cadastro_participante_FormClosing(object sender, FormClosingEventArgs e)
-        {
-           
-        }
-
-        private void form_cadastro_participante_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           
         }
 
         private void btConcluido_Click(object sender, EventArgs e)
@@ -187,6 +120,25 @@ namespace EGP_PAINEL.Formularios
             Partido.Chamou_cad_participante = true;
 
             cad_partido.ShowDialog();
+        }
+
+        private void pictureBox_foto_DoubleClick(object sender, EventArgs e)
+        {
+            using (OpenFileDialog open = new OpenFileDialog())
+            {
+
+                pictureBox_foto.SizeMode = PictureBoxSizeMode.StretchImage;
+
+                open.InitialDirectory = "C:\\";
+
+                //estudar
+                open.Filter = "Tipos |*.png;*.jpg;*.bmp;*.jpeg";
+
+                if (open.ShowDialog() == DialogResult.OK)
+                {
+                    pictureBox_foto.ImageLocation = open.FileName;
+                }
+            }
         }
     }
 }
