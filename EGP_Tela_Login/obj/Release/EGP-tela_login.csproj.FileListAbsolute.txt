@@ -1,0 +1,10 @@
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\bin\Release\EGP-tela_login.exe.config
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\bin\Release\EGP-tela_login.exe
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\bin\Release\EGP-tela_login.pdb
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP-tela_login.csprojAssemblyReference.cache
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP_tela_login.Form1.resources
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP_tela_login.Properties.Resources.resources
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP-tela_login.csproj.GenerateResource.cache
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP-tela_login.csproj.CoreCompileInputs.cache
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP-tela_login.exe
+C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Release\EGP-tela_login.pdb
