@@ -76,10 +76,20 @@ namespace EGP_PAINEL.Formularios
         private void btConcluido_Click(object sender, EventArgs e)
         {
 
-            AnalisaControles(groupBox_info_pessoais);
-            AnalisaControles(groupBox_atribuicoes);
-            AnalisaControles(groupBox_endereco);
-            AnalisaControles(groupBox_movel);
+            if (AnalisaControles(groupBox_info_pessoais))
+            {
+                if (AnalisaControles(groupBox_atribuicoes))
+                {
+                    if (AnalisaControles(groupBox_endereco))
+                    {
+                        if (AnalisaControles(groupBox_movel))
+                        {
+
+                        }
+                    }
+                }
+            }         
+          
         }
 
         private bool AnalisaControles(Control control)
