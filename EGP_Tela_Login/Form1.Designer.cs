@@ -28,14 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form_egp_login));
             this.ed_senha = new System.Windows.Forms.TextBox();
             this.ed_usuario = new System.Windows.Forms.TextBox();
             this.ed_codigo = new System.Windows.Forms.TextBox();
-            this.pictureBox_bt_sair = new System.Windows.Forms.PictureBox();
             this.pictureBox_bt_acessar = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_sair)).BeginInit();
+            this.pictureBox_bt_sair = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_acessar)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_sair)).BeginInit();
             this.SuspendLayout();
             // 
             // ed_senha
@@ -83,17 +82,6 @@
             this.ed_codigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.ed_codigo_KeyPress);
             this.ed_codigo.Leave += new System.EventHandler(this.ed_codigo_Leave);
             // 
-            // pictureBox_bt_sair
-            // 
-            this.pictureBox_bt_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox_bt_sair.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox_bt_sair.Location = new System.Drawing.Point(423, 377);
-            this.pictureBox_bt_sair.Name = "pictureBox_bt_sair";
-            this.pictureBox_bt_sair.Size = new System.Drawing.Size(71, 36);
-            this.pictureBox_bt_sair.TabIndex = 6;
-            this.pictureBox_bt_sair.TabStop = false;
-            this.pictureBox_bt_sair.Click += new System.EventHandler(this.pictureBox_bt_sair_Click);
-            // 
             // pictureBox_bt_acessar
             // 
             this.pictureBox_bt_acessar.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -105,11 +93,22 @@
             this.pictureBox_bt_acessar.TabStop = false;
             this.pictureBox_bt_acessar.Click += new System.EventHandler(this.pictureBox_bt_acessar_Click);
             // 
+            // pictureBox_bt_sair
+            // 
+            this.pictureBox_bt_sair.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox_bt_sair.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox_bt_sair.Location = new System.Drawing.Point(423, 377);
+            this.pictureBox_bt_sair.Name = "pictureBox_bt_sair";
+            this.pictureBox_bt_sair.Size = new System.Drawing.Size(71, 36);
+            this.pictureBox_bt_sair.TabIndex = 6;
+            this.pictureBox_bt_sair.TabStop = false;
+            this.pictureBox_bt_sair.Click += new System.EventHandler(this.pictureBox_bt_sair_Click);
+            // 
             // Form_egp_login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImage = global::EGP_tela_login.Properties.Resources._500;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(838, 519);
             this.Controls.Add(this.pictureBox_bt_acessar);
@@ -122,8 +121,8 @@
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_sair)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_acessar)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_bt_sair)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

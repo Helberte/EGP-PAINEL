@@ -63,9 +63,9 @@ namespace EGP_tela_login.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EGP___TELA_LOGIN {
+        internal static System.Drawing.Bitmap _500 {
             get {
-                object obj = ResourceManager.GetObject("EGP - TELA LOGIN", resourceCulture);
+                object obj = ResourceManager.GetObject("500", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

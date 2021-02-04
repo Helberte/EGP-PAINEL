@@ -99,30 +99,39 @@ begin
 		else if (UPPER(@acao) = 'A')  -- ALTERAR - UPDATE
 		begin
 			
-			declare @id_endereco_na_camara int
+			declare @id_endereco_na_camara int			
 
-			-- obtem o numero do endereço na camara
-			select @id_endereco_na_camara=c.FK_ENDERECO from CAMARA c where c.SERIAL_CAMARA = @serial_camara
+			-- verifica se existe outra camara diferente da atual que tem o mesmo cnpj
+			-- passado por parametro
+			if (select COUNT(*) from CAMARA c where c.CNPJ = @cnpj 
+													and c.SERIAL_CAMARA != @serial_camara) > 0
+			begin
+				select 0 [result], 'Já existe outra câmara com este CNPJ.' [message]
+			end
+			else
+			begin
+				-- obtem o numero do endereço na camara
+				select @id_endereco_na_camara=c.FK_ENDERECO from CAMARA c where c.SERIAL_CAMARA = @serial_camara
 
-			-- atualiza a camara atual
-			update CAMARA set NOME = @nome,
-							  CNPJ = @cnpj,
-							  EMAIL = @email,
-							  TELEFONE = @telefone,
-							  CELULAR = @celular,
-							  IMAGEM = @imagem
-				   where CAMARA.SERIAL_CAMARA = @serial_camara
+				-- atualiza a camara atual
+				update CAMARA set NOME = @nome,
+								  CNPJ = @cnpj,
+								  EMAIL = @email,
+								  TELEFONE = @telefone,
+								  CELULAR = @celular,
+								  IMAGEM = @imagem
+					   where CAMARA.SERIAL_CAMARA = @serial_camara
 			
-			-- atualiza o endereço da camara com base no valor obtido
-			update endereco set cep = @cep,
-								rua = @rua,
-								numero = @numero,
-								bairro = @bairro,
-								cidade = @cidade
-				   where ID_ENDERECO = @id_endereco_na_camara
-
-
-			select 1 [result]
+				-- atualiza o endereço da camara com base no valor obtido
+				update endereco set cep = @cep,
+									rua = @rua,
+									numero = @numero,
+									bairro = @bairro,
+									cidade = @cidade
+					   where ID_ENDERECO = @id_endereco_na_camara
+					   
+				select 1 [result]
+			end
 		end
 		else if (UPPER(@acao) = 'E') -- EXCLUIR
 		begin

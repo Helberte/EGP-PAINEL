@@ -391,13 +391,19 @@ namespace EGP_PAINEL.Formularios
             }
             else
             {
-                byte[] imagem = new byte[0];
-                imagem = (byte[])dataGrid_camaras.Rows[linha].Cells["Imagem"].Value;
+                try
+                {
+                    byte[] imagem = new byte[0];
+                    imagem = (byte[])dataGrid_camaras.Rows[linha].Cells["Imagem"].Value;
 
-                MemoryStream memory = new MemoryStream(imagem);
-                pcb_imagem.Image = Image.FromStream(memory);
-            }           
-
+                    MemoryStream memory = new MemoryStream(imagem);
+                    pcb_imagem.Image = Image.FromStream(memory);
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Erro ao carregar imagem. " + e.Message,"Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }                
+            }   
         }
 
         private void form_cadastro_camara_Shown_1(object sender, EventArgs e)
@@ -586,22 +592,30 @@ namespace EGP_PAINEL.Formularios
                 return null;            
             else
             {
-                if (string.IsNullOrEmpty(caminho_imagem)) // verifica o caminho da imagem
+                try
                 {
-                    return (byte[])dataGrid_camaras.CurrentRow.Cells["Imagem"].Value; // retorna a mesma que está no banco
-                }
-                else
-                {
-                    using (FileStream arquivo = new FileStream(caminho_imagem, FileMode.Open, FileAccess.Read))
+                    if (string.IsNullOrEmpty(caminho_imagem)) // verifica o caminho da imagem
                     {
-                        byte[] matriz = new byte[arquivo.Length];
+                        return (byte[])dataGrid_camaras.CurrentRow.Cells["Imagem"].Value; // retorna a mesma que está no banco
+                    }
+                    else
+                    {
+                        using (FileStream arquivo = new FileStream(caminho_imagem, FileMode.Open, FileAccess.Read))
+                        {
+                            byte[] matriz = new byte[arquivo.Length];
 
-                        arquivo.Read(matriz, 0, matriz.Length);
+                            arquivo.Read(matriz, 0, matriz.Length);
 
-                        caminho_imagem = "";
-                        return matriz;
+                            caminho_imagem = "";
+                            return matriz;
+                        }
                     }
                 }
+                catch (Exception e)
+                {
+                    MessageBox.Show("Problemas ao salvar imagem. " + e.Message, "Atenção!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return null;
+                }                
             }
 
             //if (alterou_imagem)

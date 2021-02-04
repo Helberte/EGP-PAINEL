@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Configuration;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using EGP_PAINEL.Classes;
@@ -72,26 +73,30 @@ namespace EGP_PAINEL.Formularios
                 }
             }
         }
-
         private void btConcluido_Click(object sender, EventArgs e)
         {
+            // se retornar falso é porque tem campos sem serem preenchidos
 
-            if (AnalisaControles(groupBox_info_pessoais))
+            bool retorno = AnalisaControles(groupBox_info_pessoais);
+
+            if (retorno)
             {
-                if (AnalisaControles(groupBox_atribuicoes))
+                retorno = AnalisaControles(groupBox_atribuicoes);
+                if (retorno)
                 {
-                    if (AnalisaControles(groupBox_endereco))
+                    retorno = AnalisaControles(groupBox_endereco);
+
+                    if (retorno)
                     {
-                        if (AnalisaControles(groupBox_movel))
-                        {
-
-                        }
+                        retorno = AnalisaControles(groupBox_movel);
                     }
-                }
-            }         
-          
+                }                
+            }
+            if (retorno)
+            {
+                MessageBox.Show("Concluído");
+            }                 
         }
-
         private bool AnalisaControles(Control control)
         {
             foreach (Control item in control.Controls)
@@ -101,7 +106,7 @@ namespace EGP_PAINEL.Formularios
                     if (item.Text.Trim() == string.Empty)
                     {
                         MessageBox.Show("Faltam informações.", "Faltam dados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return true;
+                        return false;
                     }
                 }
                 else if (item is ComboBox)
@@ -109,11 +114,21 @@ namespace EGP_PAINEL.Formularios
                     if(item.Text.Trim() == string.Empty)
                     {
                         MessageBox.Show("Faltam informações.", "Faltam dados", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        return true;
+                        return false;
                     }
                 }
+                else if (item is MaskedTextBox) 
+                {
+                    string maskara = Regex.Replace(item.Text, "[^0-9]", ""); // retira a mascara
+
+                    if (maskara.Trim() == string.Empty)
+                    {
+                        MessageBox.Show("Faltam informações.", "Faltam dados", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        return false;
+                    }                    
+                }
             }
-            return false;
+            return true;
         }
 
         private void button1_Click(object sender, EventArgs e)

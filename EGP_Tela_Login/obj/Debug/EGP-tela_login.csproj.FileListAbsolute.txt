@@ -8,3 +8,13 @@ C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Debug\EGP-tela_login.csproj.Co
 C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Debug\EGP-tela_login.exe
 C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Debug\EGP-tela_login.pdb
 C:\Helberte\Projetos C#\Testes\EGP-tela_login\obj\Debug\EGP_tela_login.Form_egp_login.resources
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\bin\Debug\EGP-tela_login.exe.config
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\bin\Debug\EGP-tela_login.exe
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\bin\Debug\EGP-tela_login.pdb
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP-tela_login.csprojAssemblyReference.cache
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP_tela_login.Form_egp_login.resources
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP_tela_login.Properties.Resources.resources
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP-tela_login.csproj.GenerateResource.cache
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP-tela_login.csproj.CoreCompileInputs.cache
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP-tela_login.exe
+C:\Helberte\EGP-PAINEL\EGP_Tela_Login\obj\Debug\EGP-tela_login.pdb
